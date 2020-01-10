@@ -5,12 +5,12 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegisterType;
 use App\Service\UserService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\BrowserKit\Request;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
@@ -26,7 +26,7 @@ class UserController extends AbstractController
     /**
      * @Route("/register", name="register")
      */
-    public function register(Request $request)
+    public function register(Request $request) : Response
     {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
@@ -39,9 +39,9 @@ class UserController extends AbstractController
         $this->userService->geberateToken($password);
     
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
-        $entityManager->flush();
+        // $entityManager = $this->getDoctrine()->getManager();
+        // $entityManager->persist($user);
+        // $entityManager->flush();
 
         return $this->redirectToRoute('app_login');
     }
