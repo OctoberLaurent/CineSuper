@@ -1,10 +1,15 @@
 {% extends "base.html.twig" %}
 {% block body %}
 <header>
-    <nav class="nav navbar-primary">
+    <nav class="navbar navbar-primary bg-primary">
     <a class = "navbar-brand" href="{{ path('home') }}">CinéSuper</a>
-        <a class="nav-link" href="#">Link</a>
-        <a class="nav-link" href="#">Link</a>
+        <div class="action">
+            {% if app.user is empty %}
+                <a href="{{ path('app_login') }}" class="btn btn-primary" >Connexion</a>
+            {% else %}
+                <a href="{{ path('app_logout') }}" class="btn btn-primary" >Déconnexion</a>
+            {% endif %}
+        </div>
     </nav>
 </header>
 

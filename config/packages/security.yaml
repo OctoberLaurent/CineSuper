@@ -16,6 +16,20 @@ security:
             security: false
         main:
             anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\AppAuthenticator
+            
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
+            
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: home
+        
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -27,4 +41,4 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/dashboard, roles: ROLE_USER }

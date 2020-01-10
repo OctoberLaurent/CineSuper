@@ -2,6 +2,16 @@
 
 body{
     font-size: 16px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: $light;
+}
+
+main{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .navbar-primary{
@@ -25,7 +35,7 @@ footer{
 
 .landing{
     width: 100%;
-    height: 100vh;
+    flex-grow: 1;
     background-image: url('/images/movie.jpg');
     background-size: cover;
     background-position: center center;
